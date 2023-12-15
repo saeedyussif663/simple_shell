@@ -116,34 +116,34 @@ return (ri);
 int _getline(info_t *info, char **ptr, size_t *length)
 {
 static char buf[READ_BUF_SIZE];
-static size_t a, length;
-size_t b;
+static size_t a, len;
+size_t k;
 ssize_t r = 0, s = 0;
 char *q = NULL, *new_q = NULL, *c;
 
 q = *ptr;
 if (q && length)
 s = *length;
-if (a == length)
-a = length = 0;
+if (a == len)
+a = len = 0;
 
-r = read_buf(info, buf, &length);
-if (r == -1 || (r == 0 && length == 0))
+r = read_buf(info, buf, &len);
+if (r == -1 || (r == 0 && len == 0))
 return (-1);
 
 c = _strchr(buf + a, '\n');
-b = c ? 1 + (unsigned int)(c - buf) : length;
-new_q = _realloc(q, s, s ? s + b : b + 1);
+k = c ? 1 + (unsigned int)(c - buf) : len;
+new_q = _realloc(q, s, s ? s + k : k + 1);
 if (!new_q) /* MALLOC FAILURE! */
 return (q ? free(q), -1 : -1);
 
 if (s)
-_strncat(new_q, buf + a, b - a);
+_strncat(new_q, buf + a, k - a);
 else
-_strncpy(new_q, buf + a, b - a + 1);
+_strncpy(new_q, buf + a, k - a + 1);
 
-s += b - a;
-a = b;
+s += k - a;
+a = k;
 q = new_q;
 
 if (length)
