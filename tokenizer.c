@@ -22,7 +22,7 @@ num++;
 
 if (num == 0)
 return (NULL);
-s = malloc((1 + num) * sizeof(char *));
+s = malloc((1 + num) *sizeof(char *));
 if (!s)
 return (NULL);
 for (a = 0, b = 0; b < num; b++)
@@ -68,7 +68,7 @@ if ((str[a] != d && str[a + 1] == d) ||
 num++;
 if (num == 0)
 return (NULL);
-s = malloc((1 + num) * sizeof(char *));
+s = malloc((1 + num) *sizeof(char *));
 if (!s)
 return (NULL);
 for (a = 0, b = 0; b < num; b++)
