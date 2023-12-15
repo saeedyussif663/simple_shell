@@ -1,39 +1,40 @@
 #include "shell.h"
 
 /**
- * is_chain - test if current char in buffer is a chain delimeter
- * @info: the parameter struct
- * @buf: the char buffer
- * @p: address of current position in buf
- *
- * Return: 1 if chain delimeter, 0 otherwise
+ * is_chain - chain delinmeter?
+ * @info: parameter
+ * @buf: parameter
+ * @p: parameter
+ * Return: 1 - chain, else 0
  */
 int is_chain(info_t *info, char *buf, size_t *p)
 {
-size_t j = *p;
+size_t a = *p;
 
-if (buf[j] == '|' && buf[j + 1] == '|')
+if (buf[a] == '|' && buf[a + 1] == '|')
 {
-buf[j] = 0;
-j++;
+buf[a] = 0;
+a++;
 info->cmd_buf_type = CMD_OR;
 }
-else if (buf[j] == '&' && buf[j + 1] == '&')
+else if (buf[a] == '&' && buf[a + 1] == '&')
 {
-buf[j] = 0;
-j++;
+buf[a] = 0;
+a++;
 info->cmd_buf_type = CMD_AND;
 }
-else if (buf[j] == ';') /* found end of this command */
+else if (buf[a] == ';')
 {
-buf[j] = 0; /* replace semicolon with null */
+buf[a] = 0;
 info->cmd_buf_type = CMD_CHAIN;
 }
 else
 return (0);
-*p = j;
+
+*p = a;
 return (1);
 }
+
 
 /**
  * check_chain - checks we should continue chaining based on last status
