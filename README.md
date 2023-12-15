@@ -1,1 +1,1 @@
-# simple_shellA repository on the simple shell project
+# simple_shell A repository on the simple shell project
