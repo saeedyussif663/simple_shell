@@ -19,7 +19,7 @@ if (s[j] >= '0' && s[j] <= '9')
 {
 result *= 10;
 result += (s[j] - '0');
-            
+
 if (result > INT_MAX)
 return (-1);
 }
