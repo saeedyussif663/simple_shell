@@ -110,6 +110,5 @@ set_alias(info, info->argv[h]);
 else
 print_alias(node_starts_with(info->alias, info->argv[h], '='));
 }
-
 return (0);
 }
