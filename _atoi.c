@@ -65,7 +65,7 @@ else if (flag == 1)
 flag = 2;
 }
 
-if (c_sig == -1)
+	if (c_sig == -1)
 display = -c_rslt;
 else
 display = c_rslt;
