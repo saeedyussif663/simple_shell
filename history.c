@@ -13,7 +13,7 @@ char *buffer, *directory;
 directory = _getenv(info, "HOME=");
 if (!directory)
 return (NULL);
-    
+
 buffer = malloc(sizeof(char) * (_strlen(directory) + _strlen(HIST_FILE) + 2));
 if (!buffer)
 return (NULL);
@@ -65,33 +65,24 @@ int j, last = 0, count = 0;
 ssize_t fd, rdlen, fsize = 0;
 struct stat st;
 char *buffer = NULL, *filename = get_history_file(info);
-
 if (!filename)
 return (0);
-
 fd = open(filename, O_RDONLY);
 free(filename);
 if (fd == -1)
 return (0);
-
 if (!fstat(fd, &st))
 fsize = st.st_size;
-
 if (fsize < 2)
 return (0);
-
 buffer = malloc(sizeof(char) * (fsize + 1));
 if (!buffer)
 return (0);
-
 rdlen = read(fd, buffer, fsize);
 buffer[fsize] = 0;
-
 if (rdlen <= 0)
-return free(buffer), 0;
-
+return (free(buffer), 0);
 close(fd);
-
 for (j = 0; j < fsize; j++)
 {
 if (buffer[j] == '\n')
@@ -101,16 +92,12 @@ build_history_list(info, buffer + last, count++);
 last = j + 1;
 }
 }
-
 if (last != j)
 build_history_list(info, buffer + last, count++);
-
 free(buffer);
 info->histcount = count;
-
 while (info->histcount-- >= HIST_MAX)
 delete_node_at_index(&(info->history), 0);
-
 renumber_history(info);
 return (info->histcount);
 }
