@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * interactive - checks if its interactive
- * @info: struct address
- * Return: 1 if interactive mode, 0 otherwise
+ * interactive - confirms interactiveness
+ * @info: the location of the sturcture
+ * Return: successfull 0 or 1.
  */
 int interactive(info_t *info)
 {
@@ -11,10 +11,10 @@ return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delim - checks if character is a delimeter
- * @c: the char to check
- * @delim: the delimeter string
- * Return: 1 if true, 0 if false
+ * is_delim - is it a  delimeter
+ * @c: the characterk
+ * @delim: the delim
+ * Return: success.
  */
 int is_delim(char c, char *delim)
 {
@@ -40,36 +40,36 @@ return (0);
 }
 
 /**
- *_atoi - converts a string to an integer
- *@s: the string to be converted
- *Return: 0 if no numbers in string, converted number otherwise
+ *_atoi - string converter.
+ *@s: the victim
+ *Return: success.
  */
 
 int _atoi(char *s)
 {
-int i, sign = 1, flag = 0, output;
-unsigned int result = 0;
+int q, c_sig = 1, flag = 0, display;
+unsigned int c_rslt = 0;
 
-for (i = 0;  s[i] != '\0' && flag != 2; i++)
+for (q = 0; s[q] != '\0' && flag != 2; q++)
 {
-if (s[i] == '-')
-sign *= -1;
+if (s[q] == '-')
+c_sig *= -1;
 
-if (s[i] >= '0' && s[i] <= '9')
+if (s[q] >= '0' && s[q] <= '9')
 {
 flag = 1;
-result *= 10;
-result += (s[i] - '0');
+c_rslt *= 10;
+c_rslt += (s[q] - '0');
 }
 else if (flag == 1)
 flag = 2;
 }
 
-if (sign == -1)
-output = -result;
+	if (c_sig == -1)
+display = -c_rslt;
 else
-output = result;
+display = c_rslt;
 
-return (output);
+return (display);
 }
 
