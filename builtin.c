@@ -36,18 +36,16 @@ int _mycd(info_t *info)
 {
 char *s, *directory, buffer[1024];
 int children_return;
-
 s = getcwd(buffer, 1024);
 if (!s)
 _puts("TODO: >>getcwd failure emsg here<<\n");
-    
 if (!info->argv[1])
 {
 directory = _getenv(info, "HOME=");
 if (!directory)
 children_return = /* TODO: what should this be? */
 chdir((directory = _getenv(info, "PWD=")) ? directory : "/");
-        else
+else
 children_return = chdir(directory);
 }
 else if (_strcmp(info->argv[1], "-") == 0)
@@ -64,7 +62,6 @@ chdir((directory = _getenv(info, "OLDPWD=")) ? directory : "/");
 }
 else
 children_return = chdir(info->argv[1]);
-
 if (children_return == -1)
 {
 print_error(info, "can't cd to ");
@@ -75,8 +72,7 @@ else
 _setenv(info, "OLDPWD", _getenv(info, "PWD="));
 _setenv(info, "PWD", getcwd(buffer, 1024));
 }
-
-    return (0);
+return (0);
 }
 
 /**
