@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * interactive - confirms interactiveness
- * @info: the location of the sturcture
- * Return: successfull 0 or 1.
+ * interactive - interactive?
+ * @info: parameter
+ * Return: 1
  */
 int interactive(info_t *info)
 {
@@ -11,10 +11,10 @@ return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delim - is it a  delimeter
- * @c: the characterk
- * @delim: the delim
- * Return: success.
+ * is_delim - delimeter?
+ * @c: parameter
+ * @delim: parameter
+ * Return: 1.
  */
 int is_delim(char c, char *delim)
 {
@@ -26,9 +26,9 @@ return (0);
 }
 
 /**
- *_isalpha - checks for alphabetic character
- *@c: The character to input
- *Return: 1 if c is alphabetic, 0 otherwise
+ *_isalpha - alphabet?
+ *@c: parameter
+ *Return: 1
  */
 
 int _isalpha(int c)
@@ -40,9 +40,9 @@ return (0);
 }
 
 /**
- *_atoi - string converter.
- *@s: the victim
- *Return: success.
+ *_atoi - string
+ *@s: parameter
+ *Return: 1
  */
 
 int _atoi(char *s)

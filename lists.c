@@ -1,12 +1,11 @@
 #include "shell.h"
 
 /**
- * add_node - adds a node to the start of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
- * Return: size of list
+ * add_node - adds node
+ * @head: parameter
+ * @str: parameter
+ * @num: parameter
+ * Return: size
  */
 list_t *add_node(list_t **head, const char *str, int num)
 {
@@ -34,12 +33,11 @@ return (new_head);
 }
 
 /**
- * add_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
- * @str: str field of node
- * @num: node index used by history
- *
- * Return: size of list
+ * add_node_end - add node
+ * @head: parameter
+ * @str: parameter
+ * @num: parameter
+ * Return: size
  */
 list_t *add_node_end(list_t **head, const char *str, int num)
 {
@@ -75,36 +73,34 @@ return (new_node);
 }
 
 /**
- * print_list_str - prints only the str element of a list_t linked list
- * @h: pointer to first node
- *
- * Return: size of list
+ * print_list_str - print str
+ * @h: parameter
+ * Return: size
  */
 size_t print_list_str(const list_t *h)
 {
-size_t i = 0;
+size_t j = 0;
 
 while (h)
 {
 _puts(h->str ? h->str : "(nil)");
 _puts("\n");
 h = h->next;
-i++;
+j++;
 }
-return (i);
+return (j);
 }
 
 /**
- * delete_node_at_index - deletes node at given index
- * @head: address of pointer to first node
- * @index: index of node to delete
- *
- * Return: 1 on success, 0 on failure
+ * delete_node_at_index - delete node
+ * @head: parameter
+ * @index: parameter
+ * Return: 1 on success
  */
 int delete_node_at_index(list_t **head, unsigned int index)
 {
 list_t *node, *prev_node;
-unsigned int i = 0;
+unsigned int j = 0;
 
 if (!head || !*head)
 return (0);
@@ -120,25 +116,25 @@ return (1);
 node = *head;
 while (node)
 {
-if (i == index)
+if (j == index)
 {
 prev_node->next = node->next;
 free(node->str);
 free(node);
 return (1);
 }
-i++;
+j++;
 prev_node = node;
 node = node->next;
 }
 return (0);
 }
 
+
 /**
- * free_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
- *
- * Return: void
+ * free_list - free node
+ * @head_ptr: pointer
+ * Return: nothing
  */
 void free_list(list_t **head_ptr)
 {
